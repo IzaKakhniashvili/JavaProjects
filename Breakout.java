@@ -1,7 +1,7 @@
 /*
  * File: Breakout.java
  * -------------------
- * Name:
+ * Name: Izolda Kakhniashvili
  * Section Leader:
  * 
  * This file will eventually implement the game of Breakout.
