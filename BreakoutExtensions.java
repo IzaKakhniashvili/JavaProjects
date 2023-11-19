@@ -84,6 +84,9 @@ public class BreakoutExtensions extends GraphicsProgram {
 		addMouseListeners();
 		while(livesLeft > 0){
 		   clickToStart();
+		   if(startGame = true){
+			   initialiseGame();
+		   }
 		/* You fill this in, along with any subsidiary methods */
 	}
 		gameOver();
@@ -101,14 +104,12 @@ public class BreakoutExtensions extends GraphicsProgram {
 		GLabel start = new GLabel("Click to start the game.");
 		start.setFont(new Font("Serif", Font.BOLD, 25));
 		add(start, (WIDTH - start.getWidth()) / 2, (HEIGHT - start.getHeight()) / 2);
+		pause(100);
 		if(startGame = true){
 			remove(start);
-			initialiseGame();
 		}
-		
 	}
 	public void mouseClicked(MouseEvent e){
-		if(!startGame)
 		startGame = true;
 	}
 		
