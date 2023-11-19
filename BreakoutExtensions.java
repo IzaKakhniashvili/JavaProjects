@@ -100,7 +100,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 		}
 	private void addLivesLabel(){
 		lives = new GLabel("Lives left:" + livesLeft);
-		lives.setFont(new Font("Arial", 15));
+		lives.setFont(new Font("Arial", Font.PLAIN, 15));
 		lives.setColor(Color.red);
 		add(lives, 0, lives.getHeight());
 		
