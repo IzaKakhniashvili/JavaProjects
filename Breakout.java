@@ -82,11 +82,11 @@ public class Breakout extends GraphicsProgram {
 				double y = BRICK_Y_OFFSET + j * (BRICK_HEIGHT + BRICK_SEP);
 				brick = new GRect(BRICK_WIDTH, BRICK_HEIGHT);
 				brick.setFilled(true);
-				if(i <= 2) brick.setColor(Color.red);
-				if(i <= 4 & i >= 2) brick.setColor(Color.orange);
-				if(i <= 6 & i >= 4) brick.setColor(Color.yellow);
-				if(i <= 8 & i >= 6) brick.setColor(Color.green);
-				if(i <= 10 & i >= 8) brick.setColor(Color.cyan);
+				if(j <= 2) brick.setColor(Color.red);
+				if(j <= 4 & j >= 2) brick.setColor(Color.orange);
+				if(j <= 6 & j >= 4) brick.setColor(Color.yellow);
+				if(j <= 8 & j >= 6) brick.setColor(Color.green);
+				if(j <= 10 & j >= 8) brick.setColor(Color.cyan);
 				add(brick, x, y);
 			}
 		}
