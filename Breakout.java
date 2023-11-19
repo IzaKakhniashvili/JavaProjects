@@ -89,8 +89,8 @@ public class Breakout extends GraphicsProgram {
 		makePaddle();
 	}
 	private void startGame(){
-			checkCollisions();
 			makeBallMove();
+			pause(10);
 		}
 		
 	private void makeBrickRows(){
@@ -166,6 +166,7 @@ public class Breakout extends GraphicsProgram {
 			vy = -vy;
 			NBRICKS --;
 		}
+		/*We check i*/
 		if(ball.getX() + 2 * BALL_RADIUS >= WIDTH ||
 				ball.getX() < 0) vx = -vx;
 		if(ball.getY() < 0) vy = -vy;
