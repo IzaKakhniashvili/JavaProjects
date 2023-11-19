@@ -83,7 +83,6 @@ public class BreakoutExtensions extends GraphicsProgram {
 	public void run() {
 		setUp();
 		addMouseListeners();
-		 clickToStart();
 		while(livesLeft > 0){
 			   initialiseGame();
 		   }
