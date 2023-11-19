@@ -87,9 +87,9 @@ public class Breakout extends GraphicsProgram {
 		
 	}
 	private void startGame(){
-		while(livesLeft > 3){
-			makeBallMove();
+		while(livesLeft > 0){
 			checkCollisions();
+			makeBallMove();
 			pause(10);
 		}
 		
