@@ -174,7 +174,7 @@ public class Breakout extends GraphicsProgram {
 			livesLeft--;
 			if(livesLeft > 0){
 				ball.setLocation(WIDTH / 2 - 2 * BALL_RADIUS, HEIGHT / 2 - 2 * BALL_RADIUS );
-				pause(10);
+				pause(100);
 			}
 		}
 	}
