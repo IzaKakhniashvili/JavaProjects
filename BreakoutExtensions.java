@@ -88,16 +88,13 @@ public class BreakoutExtensions extends GraphicsProgram {
 	public void run() {
 		setUp();
 		addMouseListeners();
-		waitForClick();
-		startGame = true;
-		if(startGame = true){
 		while(livesLeft > 0){
 			   initialiseGame();
 		   }
 		pause(100);
 		gameOver();
 	}
-	}
+	
 	private void setUp(){ /*We separate process of setting up the game*/
 		makeBrickRows();
 		makeBall();
@@ -106,9 +103,18 @@ public class BreakoutExtensions extends GraphicsProgram {
 		addScoreLabel();
 	}
 	private void initialiseGame(){
+		if(startGame = true){
 			makeBallMove();
-			
+			}
 		}
+	private void clickToStart(){
+		GLabel start = new GLabel("CLICK TO START");
+		start.setFont(new Font("Serif", Font.BOLD, 20));
+		add(start, (getWidth() - start.getWidth()) / 2, getHeight() / 2 - start.getHeight());
+		waitForClick();
+		remove(start);
+		startGame = true;
+	}
 	private void addLivesLabel(){
 		lives = new GLabel("Lives left: " + livesLeft);
 		lives.setFont(new Font("Arial", Font.BOLD, 15));
