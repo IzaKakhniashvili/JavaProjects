@@ -191,6 +191,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 			bounceClip.play();
 			if(vy > 0 & ball.getY() + 2*BALL_RADIUS> HEIGHT - PADDLE_HEIGHT - PADDLE_Y_OFFSET) vy =-vy;
 		}else if(collider != null){
+			if(SCORE % 7 == 0) vy = vy * 2;
 			bounceClip.play();
 			remove(collider);
 			vy = -vy;
