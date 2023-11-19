@@ -88,11 +88,17 @@ public class BreakoutExtensions extends GraphicsProgram {
 	public void run() {
 		setUp();
 		addMouseListeners();
+		if(startGame = true){
 		while(livesLeft > 0){
 			   initialiseGame();
 		   }
 		pause(100);
 		gameOver();
+	}
+	}
+	public void mouseClicked(MouseEvent e){
+		waitForClick();
+		startGame = true;
 	}
 	private void setUp(){ /*We separate process of setting up the game*/
 		makeBrickRows();
