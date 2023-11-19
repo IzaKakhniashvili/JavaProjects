@@ -73,7 +73,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 /**Number of lives left*/
 	private int livesLeft = NTURNS; 
 	
-	private boolean startGame;
+	private boolean startGame = false;
 	
 
 /* Method: run() */
