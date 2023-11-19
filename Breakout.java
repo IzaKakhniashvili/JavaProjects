@@ -173,8 +173,8 @@ public class Breakout extends GraphicsProgram {
 		if(ball.getY() >= HEIGHT - 2*BALL_RADIUS){
 			livesLeft--;
 			if(livesLeft > 0){
-				pause(1000);
 				ball.setLocation(WIDTH / 2 - 2 * BALL_RADIUS, HEIGHT / 2 - 2 * BALL_RADIUS );
+				pause(10);
 			}
 		}
 	}
