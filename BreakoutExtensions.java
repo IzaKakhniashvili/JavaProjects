@@ -223,14 +223,14 @@ public class BreakoutExtensions extends GraphicsProgram {
 	private void gameOver(){
 		if(NBRICKS == 0 ){
 			removeAll();
-			GLabel gameWon = new GLabel("You have won the game.");
+			GLabel gameWon = new GLabel("You have won the game. Your score is: " + SCORE);
 			gameWon.setFont(new Font("Serif", Font.BOLD, 30));
 			gameWon.setColor(Color.red);
 			add(gameWon, (WIDTH - gameWon.getWidth()) / 2, HEIGHT / 2 - gameWon.getHeight());
 		}
 		if(livesLeft == 0){
 			removeAll();
-			GLabel gameLost = new GLabel("You have lost the game.");
+			GLabel gameLost = new GLabel("You have lost the game. Your score is: " + SCORE);
 			gameLost.setFont(new Font("Serif", Font.BOLD, 30));
 			gameLost.setColor(Color.red);
 			add(gameLost,(WIDTH - gameLost.getWidth()) / 2, HEIGHT / 2 - gameLost.getHeight() );
