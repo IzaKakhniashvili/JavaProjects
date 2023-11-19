@@ -56,11 +56,41 @@ public class Breakout extends GraphicsProgram {
 
 /** Number of turns */
 	private static final int NTURNS = 3;
+/**Objects for setup*/
+	private GRect brick;
+	private GOval ball;
+	private GRect paddle;
 
 /* Method: run() */
 /** Runs the Breakout program. */
 	public void run() {
+		setUp();
+		startGame();
 		/* You fill this in, along with any subsidiary methods */
+	}
+	private void setUp(){ /*We separate process of setting up the game*/
+		makeBrickRows();
+		
+	}
+	private void startGame(){
+		
+	}
+	private void makeBrickRows(){
+		for(int i = 0; i < NBRICKS_PER_ROW; i++){
+			for(int j = 0; j < NBRICK_ROWS; j++){
+				double x = BRICK_SEP + i * (BRICK_WIDTH + BRICK_SEP);
+				double y = BRICK_Y_OFFSET + j * (BRICK_HEIGHT + BRICK_SEP);
+				brick = new GRect(BRICK_WIDTH, BRICK_HEIGHT, x, y);
+				brick.setFilled(true);
+				if(i <= 2) brick.setColor(Color.red);
+				if(i <= 4 & i >= 2) brick.setColor(Color.orange);
+				if(i <= 6 & i >= 4) brick.setColor(Color.yellow);
+				if(i <= 8 & i >= 6) brick.setColor(Color.green);
+				if(i <= 10 & i >= 8) brick.setColor(Color.cyan);
+				add(brick);
+			}
+		}
+		
 	}
 
 }
