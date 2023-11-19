@@ -70,6 +70,8 @@ public class Breakout extends GraphicsProgram {
 	}
 	private void setUp(){ /*We separate process of setting up the game*/
 		makeBrickRows();
+		makeBall();
+	
 		
 	}
 	private void startGame(){
@@ -89,8 +91,13 @@ public class Breakout extends GraphicsProgram {
 				if(j <= 10 & j >= 8) brick.setColor(Color.cyan);
 				add(brick, x, y);
 			}
-		}
-		
+		}	
 	}
-
+	private void makeBall(){
+		double x = WIDTH / 2 - BALL_RADIUS;
+		double y = HEIGHT / 2 - BALL_RADIUS;
+		ball = new GOval(BALL_RADIUS, BALL_RADIUS, x, y);
+		ball.setFilled(true);
+		add(ball);
+	}
 }
