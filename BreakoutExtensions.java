@@ -111,6 +111,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 	}
 	public void mouseClicked(MouseEvent e){
 		startGame = true;
+		pause(200);
 	}
 		
 	private void makeBrickRows(){
