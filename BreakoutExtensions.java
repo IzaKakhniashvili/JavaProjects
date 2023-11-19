@@ -167,7 +167,6 @@ public class BreakoutExtensions extends GraphicsProgram {
 		vy = 3;
 		while(livesLeft>0){
 			checkCollisions();
-			addSound();
 			ball.move(vx , vy);
 			pause(10);  
 		}
@@ -199,9 +198,11 @@ public class BreakoutExtensions extends GraphicsProgram {
 		/*If ball collided with paddle its vy should change to -vy, if ball collided with bricks it should remove the brick and change its vy to -vy*/
 		GObject collider = getCollidingObject();
 		if(collider == paddle){
+			bounceClip.play(); /*We add sound to collisions*/
 			if(vy > 0 & ball.getY() + 2*BALL_RADIUS> HEIGHT - PADDLE_HEIGHT - PADDLE_Y_OFFSET) vy =-vy;
 		}else if(collider != null){
-			if(SCORE % 7 == 0) vy = vy * 2;
+			if(SCORE % 7 == 0) vy = vy * 2;/*after breaking 7 bricks vy doubles*/
+			bounceClip.play();
 			remove(collider);
 			vy = -vy;
 			NBRICKS --;
@@ -232,10 +233,6 @@ public class BreakoutExtensions extends GraphicsProgram {
 				pause(100);
 			}
 		}
-	}
-	private void addSound(){
-		GObject collider = getCollidingObject();
-		if(collider != null)bounceClip.play();
 	}
 	private void gameOver(){
 		if(NBRICKS == 0 ){

@@ -71,7 +71,8 @@ public class Breakout extends GraphicsProgram {
 	private int NBRICKS = NBRICKS_PER_ROW * NBRICK_ROWS;
 	
 /**Number of lives left*/
-	private int livesLeft = NTURNS; 
+	private int livesLeft = NTURNS;
+	
 /* Method: run() */
 /** Runs the Breakout program. */
 	private RandomGenerator rgen = RandomGenerator.getInstance();
