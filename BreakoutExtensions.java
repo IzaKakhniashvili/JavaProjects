@@ -86,6 +86,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 		while(livesLeft > 0){
 			   initialiseGame();
 		   }
+		pause(100);
 		gameOver();
 	}
 	private void setUp(){ /*We separate process of setting up the game*/
