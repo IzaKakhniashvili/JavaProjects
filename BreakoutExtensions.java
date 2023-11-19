@@ -210,7 +210,8 @@ public class BreakoutExtensions extends GraphicsProgram {
 		if(livesLeft == 0){
 			removeAll();
 			GLabel gameLost = new GLabel("You have lost the game.");
-			add(gameLost,(WIDTH - gameLost.getWidth()) / 2,(HEIGHT - gameLost.getHeight()) / 2 );
+			gameLost.setFont(new Font("Serif", Font.BOLD, 30));
+			add(gameLost,(WIDTH - gameLost.getWidth()) / 2, HEIGHT / 2 - gameLost.getHeight() );
 		}
 		
 	}
