@@ -62,6 +62,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 	private GOval ball;
 	private GRect paddle;
 	private GLabel lives;
+	private GLabel score;
 
 /**Velocity of the ball*/
 	private double vx;
@@ -73,6 +74,9 @@ public class BreakoutExtensions extends GraphicsProgram {
 	
 /**Number of lives left*/
 	private int livesLeft = NTURNS; 
+	
+/**Score: number of bricks user takes*/
+	private int SCORE = 0;
 	
 	private boolean startGame = false;
 	
@@ -94,6 +98,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 		makeBall();
 		makePaddle();
 		addLivesLabel();
+		addScoreLabel();
 	}
 	private void initialiseGame(){
 			makeBallMove();
@@ -104,6 +109,13 @@ public class BreakoutExtensions extends GraphicsProgram {
 		lives.setFont(new Font("Arial", Font.BOLD, 15));
 		lives.setColor(Color.red);
 		add(lives, 0, lives.getHeight());
+		
+	}
+	private void addScoreLabel(){
+		score = new GLabel("Score: " + SCORE);
+		score.setFont(new Font("Arial", Font.BOLD, 15));
+		score.setColor(Color.green);
+		add(score, getWidth() - score.getWidth(), score.getHeight());
 		
 	}
 	
@@ -205,12 +217,15 @@ public class BreakoutExtensions extends GraphicsProgram {
 		if(NBRICKS == 0 ){
 			removeAll();
 			GLabel gameWon = new GLabel("You have won the game.");
-			add(gameWon, (WIDTH - gameWon.getWidth()) / 2,(HEIGHT - gameWon.getHeight()) / 2);
+			gameWon.setFont(new Font("Serif", Font.BOLD, 30));
+			gameWon.setColor(Color.red);
+			add(gameWon, (WIDTH - gameWon.getWidth()) / 2, HEIGHT / 2 - gameWon.getHeight());
 		}
 		if(livesLeft == 0){
 			removeAll();
 			GLabel gameLost = new GLabel("You have lost the game.");
 			gameLost.setFont(new Font("Serif", Font.BOLD, 30));
+			gameLost.setColor(Color.red);
 			add(gameLost,(WIDTH - gameLost.getWidth()) / 2, HEIGHT / 2 - gameLost.getHeight() );
 		}
 		
