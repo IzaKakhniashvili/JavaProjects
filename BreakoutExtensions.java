@@ -188,7 +188,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 		if(ball.getY() >= HEIGHT - 2*BALL_RADIUS){
 			livesLeft--;
 			remove(lives);
-			pause(100);
+			pause(250);
 			add(lives, 0, lives.getHeight());
 			if(livesLeft > 0){
 				pause(100);
