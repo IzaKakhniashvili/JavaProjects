@@ -99,8 +99,8 @@ public class BreakoutExtensions extends GraphicsProgram {
 			
 		}
 	private void addLivesLabel(){
-		lives = new GLabel("Lives left:" + livesLeft);
-		lives.setFont(new Font("Arial", Font.PLAIN, 15));
+		lives = new GLabel("Lives left: " + livesLeft);
+		lives.setFont(new Font("Arial", Font.BOLD, 15));
 		lives.setColor(Color.red);
 		add(lives, 0, lives.getHeight());
 		
@@ -187,6 +187,8 @@ public class BreakoutExtensions extends GraphicsProgram {
 		/*If ball falls down, lives left should reduce and ball should reappear in the middle of the board*/
 		if(ball.getY() >= HEIGHT - 2*BALL_RADIUS){
 			livesLeft--;
+			remove(lives);
+			add(lives, 0, lives.getHeight());
 			if(livesLeft > 0){
 				pause(100);
 				ball.setLocation(WIDTH / 2 - 2 * BALL_RADIUS, HEIGHT / 2 - 2 * BALL_RADIUS );
