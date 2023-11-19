@@ -108,6 +108,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 		
 	}
 	public void mouseClicked(MouseEvent e){
+		if(!startGame)
 		startGame = true;
 	}
 		
