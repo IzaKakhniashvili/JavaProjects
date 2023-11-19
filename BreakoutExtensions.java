@@ -61,6 +61,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 	private GRect brick;
 	private GOval ball;
 	private GRect paddle;
+	private GLabel lives;
 
 /**Velocity of the ball*/
 	private double vx;
@@ -84,37 +85,28 @@ public class BreakoutExtensions extends GraphicsProgram {
 		addMouseListeners();
 		 clickToStart();
 		while(livesLeft > 0){
-		  
-		   if(startGame = true){
 			   initialiseGame();
 		   }
-		/* You fill this in, along with any subsidiary methods */
-	}
 		gameOver();
 	}
 	private void setUp(){ /*We separate process of setting up the game*/
 		makeBrickRows();
 		makeBall();
 		makePaddle();
+		addLivesLabel();
 	}
 	private void initialiseGame(){
 			makeBallMove();
 			
 		}
-	private void clickToStart(){
-		GLabel start = new GLabel("Click to start the game.");
-		start.setFont(new Font("Serif", Font.BOLD, 25));
-		add(start, (WIDTH - start.getWidth()) / 2, (HEIGHT - start.getHeight()) / 2);
-		pause(100);
-		if(startGame = true){
-			remove(start);
-		}
-	}
-	public void mouseClicked(MouseEvent e){
-		waitForClick();
-		startGame = true;
+	private void addLivesLabel(){
+		lives = new GLabel("Lives left:" + livesLeft);
+		lives.setFont(new Font("Serif", Font.BOLD, 5));
+		lives.setColor(Color.red);
+		add(lives, 0, lives.getHeight());
 		
 	}
+	
 		
 	private void makeBrickRows(){
 		for(int i = 0; i < NBRICKS_PER_ROW; i++){
