@@ -77,6 +77,7 @@ public class Breakout extends GraphicsProgram {
 	private RandomGenerator rgen = RandomGenerator.getInstance();
 	public void run() {
 		setUp();
+		addMouseListeners();
 		startGame();
 		/* You fill this in, along with any subsidiary methods */
 	}
@@ -127,7 +128,7 @@ public class Breakout extends GraphicsProgram {
 	private void makeBallMove(){
 		vx = rgen.nextDouble(1.0, 3.0);
 		if (rgen.nextBoolean(0.5)) vx = -vx;
-		vy = 3.0;
+		vy = 3;
 		ball.move(vx,  vy);
 		pause(10);
 	}
