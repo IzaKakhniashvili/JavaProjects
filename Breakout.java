@@ -79,7 +79,7 @@ public class Breakout extends GraphicsProgram {
 		setUp();
 		addMouseListeners();
 		while(livesLeft > 0){
-		startGame();
+			startGame();
 		/* You fill this in, along with any subsidiary methods */
 	}
 		gameOver();
