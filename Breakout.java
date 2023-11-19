@@ -127,12 +127,22 @@ public class Breakout extends GraphicsProgram {
 		vx = rgen.nextDouble(1.0, 3.0);
 		if (rgen.nextBoolean(0.5)) vx = -vx;
 		vy = 3;
-		while(true){
-			checkCollisions
+		while(livesLeft>0){
+			checkCollisions();
+			if(ball.getX() + 2 * BALL_RADIUS >= WIDTH ||
+					ball.getX() < 0) vx = -vx;
+			if(ball.getY() < 0) vy = -vy;
+			if(ball.getY() >= HEIGHT - 2*BALL_RADIUS){
+				livesLeft--;
+				if(livesLeft > 0){
+					pause(1000);
+					ball.setLocation(WIDTH / 2 - 2 * BALL_RADIUS, HEIGHT / 2 - 2 * BALL_RADIUS );
+				}
+			}
+			ball.move(vx , vy);
+			pause(10);  
 		}
-		ball.move(vx,  vy);
-		pause(10);
-	}
+		}
 	public void mouseMoved(MouseEvent e){
 		newvx = e.getX();
 		if(e.getX() + PADDLE_WIDTH > WIDTH){
@@ -157,9 +167,6 @@ public class Breakout extends GraphicsProgram {
 		}
 	}
 	private void checkCollisions(){
-		/*We check if ball collided with board walls*/
-		if(ball.getX() < 0 || ball.getX() + 2 * BALL_RADIUS > WIDTH) vx = -vx;
-		if(ball.getY() < 0 ) vy = -vy;
 		/*If ball collided with paddle its vy should change to -vy, if ball collided with bricks it should remove the brick and change its vy to -vy*/
 		GObject collider = getCollidingObject();
 		if(collider == paddle){
@@ -168,14 +175,6 @@ public class Breakout extends GraphicsProgram {
 			remove(collider);
 			vy = -vy;
 			NBRICKS --;
-		}
-		/*If ball falls down, lives left should reduce and ball should reappear in the middle of the board*/
-		if(ball.getY() >= HEIGHT - 2 * BALL_RADIUS){
-			livesLeft--;
-			if(livesLeft > 0){
-				ball.setLocation(WIDTH / 2 - BALL_RADIUS, HEIGHT / 2 - BALL_RADIUS);
-				pause(250);
-			}
 		}
 	}
 	private void gameOver(){
