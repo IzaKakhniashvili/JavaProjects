@@ -96,8 +96,8 @@ public class Breakout extends GraphicsProgram {
 	private void makeBall(){
 		double x = WIDTH / 2 - BALL_RADIUS;
 		double y = HEIGHT / 2 - BALL_RADIUS;
-		ball = new GOval(BALL_RADIUS, BALL_RADIUS, x, y);
+		ball = new GOval(BALL_RADIUS, BALL_RADIUS);
 		ball.setFilled(true);
-		add(ball);
+		add(ball, x, y);
 	}
 }
