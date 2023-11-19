@@ -71,7 +71,7 @@ public class Breakout extends GraphicsProgram {
 	private void setUp(){ /*We separate process of setting up the game*/
 		makeBrickRows();
 		makeBall();
-	
+		makePaddle();
 		
 	}
 	private void startGame(){
@@ -99,5 +99,12 @@ public class Breakout extends GraphicsProgram {
 		ball = new GOval(2 * BALL_RADIUS, 2 * BALL_RADIUS);
 		ball.setFilled(true);
 		add(ball, x, y);
+	}
+	private void makePaddle(){
+		double x = (WIDTH - PADDLE_WIDTH) / 2;
+		double y = (HEIGHT - PADDLE_HEIGHT - PADDLE_Y_OFFSET);
+		paddle = new GRect(PADDLE_WIDTH, PADDLE_HEIGHT);
+		paddle.setFilled(true);
+		add(paddle, x, y);
 	}
 }
