@@ -160,7 +160,7 @@ public class Breakout extends GraphicsProgram {
 	private void checkCollisions(){
 		/*If ball collided with paddle its vy should change to -vy, if ball collided with bricks it should remove the brick and change its vy to -vy*/
 		GObject collider = getCollidingObject();
-		if(collider == paddle){
+		if(collider == paddle & ball.getY() + 2 * BALL_RADIUS >= paddle.getY()){
 			vy =-vy;
 		}else if(collider != null){
 			remove(collider);
