@@ -73,6 +73,8 @@ public class BreakoutExtensions extends GraphicsProgram {
 /**Number of lives left*/
 	private int livesLeft = NTURNS; 
 	
+	private boolean startGame;
+	
 
 /* Method: run() */
 /** Runs the Breakout program. */
@@ -81,7 +83,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 		setUp();
 		addMouseListeners();
 		while(livesLeft > 0){
-		  initialiseGame();
+		   clickToStart();
 		/* You fill this in, along with any subsidiary methods */
 	}
 		gameOver();
@@ -95,7 +97,19 @@ public class BreakoutExtensions extends GraphicsProgram {
 			makeBallMove();
 			
 		}
-	
+	private void clickToStart(){
+		GLabel start = new GLabel("Click to start the game.");
+		start.setFont(new Font("Serif", Font.BOLD, 25));
+		add(start, (WIDTH - start.getWidth()) / 2, (HEIGHT - start.getHeight()) / 2);
+		if(startGame = true){
+			remove(start);
+			initialiseGame();
+		}
+		
+	}
+	public void mouseClicked(MouseEvent e){
+		startGame = true;
+	}
 		
 	private void makeBrickRows(){
 		for(int i = 0; i < NBRICKS_PER_ROW; i++){
