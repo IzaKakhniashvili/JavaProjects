@@ -189,6 +189,9 @@ public class BreakoutExtensions extends GraphicsProgram {
 			livesLeft--;
 			remove(lives);
 			pause(250);
+			lives = new GLabel("Lives left: " + livesLeft);
+			lives.setFont(new Font("Arial", Font.BOLD, 15));
+			lives.setColor(Color.red);
 			add(lives, 0, lives.getHeight());
 			if(livesLeft > 0){
 				pause(100);
