@@ -95,7 +95,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 			makeBallMove();
 			
 		}
-	private void clickToStart
+	
 		
 	private void makeBrickRows(){
 		for(int i = 0; i < NBRICKS_PER_ROW; i++){
