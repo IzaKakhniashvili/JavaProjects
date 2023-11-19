@@ -129,16 +129,6 @@ public class Breakout extends GraphicsProgram {
 		vy = 3;
 		while(livesLeft>0){
 			checkCollisions();
-			if(ball.getX() + 2 * BALL_RADIUS >= WIDTH ||
-					ball.getX() < 0) vx = -vx;
-			if(ball.getY() < 0) vy = -vy;
-			if(ball.getY() >= HEIGHT - 2*BALL_RADIUS){
-				livesLeft--;
-				if(livesLeft > 0){
-					pause(1000);
-					ball.setLocation(WIDTH / 2 - 2 * BALL_RADIUS, HEIGHT / 2 - 2 * BALL_RADIUS );
-				}
-			}
 			ball.move(vx , vy);
 			pause(10);  
 		}
@@ -175,6 +165,16 @@ public class Breakout extends GraphicsProgram {
 			remove(collider);
 			vy = -vy;
 			NBRICKS --;
+		}
+		if(ball.getX() + 2 * BALL_RADIUS >= WIDTH ||
+				ball.getX() < 0) vx = -vx;
+		if(ball.getY() < 0) vy = -vy;
+		if(ball.getY() >= HEIGHT - 2*BALL_RADIUS){
+			livesLeft--;
+			if(livesLeft > 0){
+				pause(1000);
+				ball.setLocation(WIDTH / 2 - 2 * BALL_RADIUS, HEIGHT / 2 - 2 * BALL_RADIUS );
+			}
 		}
 	}
 	private void gameOver(){
