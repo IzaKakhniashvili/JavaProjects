@@ -78,23 +78,21 @@ public class Breakout extends GraphicsProgram {
 	public void run() {
 		setUp();
 		addMouseListeners();
+		while(livesLeft > 0){
 		startGame();
 		/* You fill this in, along with any subsidiary methods */
+	}
 	}
 	private void setUp(){ /*We separate process of setting up the game*/
 		makeBrickRows();
 		makeBall();
 		makePaddle();
-		
 	}
 	private void startGame(){
-		while(livesLeft > 0){
 			checkCollisions();
 			makeBallMove();
 		}
 		
-		
-	}
 	private void makeBrickRows(){
 		for(int i = 0; i < NBRICKS_PER_ROW; i++){
 			for(int j = 0; j < NBRICK_ROWS; j++){
