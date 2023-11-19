@@ -30,7 +30,7 @@ public class Breakout extends GraphicsProgram {
 	private static final int PADDLE_HEIGHT = 10;
 
 /** Offset of the paddle up from the bottom */
-	private static final int PADDLE_Y_OFFSET =60;
+	private static final int PADDLE_Y_OFFSET = 30;
 
 /** Number of bricks per row */
 	private static final int NBRICKS_PER_ROW = 10;
@@ -161,7 +161,7 @@ public class Breakout extends GraphicsProgram {
 		/*If ball collided with paddle its vy should change to -vy, if ball collided with bricks it should remove the brick and change its vy to -vy*/
 		GObject collider = getCollidingObject();
 		if(collider == paddle){
-			vy =-vy;
+			if(vy > 0 & ball.getY() + 2 * BALL_RADIUS >= paddle.getY()) vy =-vy;
 		}else if(collider != null){
 			remove(collider);
 			vy = -vy;
