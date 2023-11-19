@@ -84,6 +84,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 /* Method: run() */
 /** Runs the Breakout program. */
 	private RandomGenerator rgen = RandomGenerator.getInstance();
+	AudioClip bounceClip = MediaTools.loadAudioClip("bounce.au");
 	public void run() {
 		setUp();
 		addMouseListeners();
@@ -187,8 +188,10 @@ public class BreakoutExtensions extends GraphicsProgram {
 		/*If ball collided with paddle its vy should change to -vy, if ball collided with bricks it should remove the brick and change its vy to -vy*/
 		GObject collider = getCollidingObject();
 		if(collider == paddle){
+			bounceClip.play();
 			if(vy > 0 & ball.getY() + 2*BALL_RADIUS> HEIGHT - PADDLE_HEIGHT - PADDLE_Y_OFFSET) vy =-vy;
 		}else if(collider != null){
+			bounceClip.play();
 			remove(collider);
 			vy = -vy;
 			NBRICKS --;
