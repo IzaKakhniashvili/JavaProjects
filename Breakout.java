@@ -82,6 +82,7 @@ public class Breakout extends GraphicsProgram {
 		startGame();
 		/* You fill this in, along with any subsidiary methods */
 	}
+		gameOver();
 	}
 	private void setUp(){ /*We separate process of setting up the game*/
 		makeBrickRows();
@@ -90,7 +91,7 @@ public class Breakout extends GraphicsProgram {
 	}
 	private void startGame(){
 			makeBallMove();
-			pause(10);
+			
 		}
 		
 	private void makeBrickRows(){
@@ -166,10 +167,11 @@ public class Breakout extends GraphicsProgram {
 			vy = -vy;
 			NBRICKS --;
 		}
-		/*We check i*/
+		/*If ball collides with walls it should start moving in opposite direction*/
 		if(ball.getX() + 2 * BALL_RADIUS >= WIDTH ||
 				ball.getX() < 0) vx = -vx;
 		if(ball.getY() < 0) vy = -vy;
+		/*If ball falls down, lives left should reduce and ball should reappear in the middle of the board*/
 		if(ball.getY() >= HEIGHT - 2*BALL_RADIUS){
 			livesLeft--;
 			if(livesLeft > 0){
@@ -180,5 +182,16 @@ public class Breakout extends GraphicsProgram {
 		}
 	}
 	private void gameOver(){
+		if(NBRICKS == 0 ){
+			removeAll();
+			GLabel gameWon = new GLabel("You have won the game.");
+			add(gameWon, (WIDTH - gameWon.getWidth()) / 2,(HEIGHT - gameWon.getHeight()) / 2);
+		}
+		if(livesLeft == 0){
+			removeAll();
+			GLabel gameLost = new GLabel("You have lost the game.");
+			add(gameLost,(WIDTH - gameLost.getWidth()) / 2,(HEIGHT - gameLost.getHeight()) / 2 );
+		}
+		
 	}
 }
