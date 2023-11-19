@@ -67,6 +67,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 /**Velocity of the ball*/
 	private double vx;
 	private double vy;
+/**X component of paddle*/
 	private double newvx;
 
 /**Number of bricks*/
@@ -78,6 +79,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 /**Score: number of bricks user takes*/
 	private int SCORE = 0;
 	
+/**Game wont start until the user clicks on the mouse, this is the boolean which will become true after the click*/
 	private boolean startGame = false;
 	
 
@@ -85,6 +87,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 /** Runs the Breakout program. */
 	private RandomGenerator rgen = RandomGenerator.getInstance();
 	AudioClip bounceClip = MediaTools.loadAudioClip("bounce.au");
+	
 	public void run() {
 		setUp();
 		addMouseListeners();
@@ -102,13 +105,13 @@ public class BreakoutExtensions extends GraphicsProgram {
 		addLivesLabel();
 		addScoreLabel();
 	}
-	private void initialiseGame(){
+	private void initialiseGame(){ /*We separate the process of initialising the game*/
 		clickToStart();
 		if(startGame = true){
 			makeBallMove();
 			}
 		}
-	private void clickToStart(){
+	private void clickToStart(){ /*Before the user clicks on the mouse, there will be label "CLICK TO START"*/
 		GLabel start = new GLabel("CLICK TO START");
 		start.setFont(new Font("Serif", Font.BOLD, 20));
 		add(start, (getWidth() - start.getWidth()) / 2, getHeight() / 2 - start.getHeight());
@@ -116,23 +119,19 @@ public class BreakoutExtensions extends GraphicsProgram {
 		remove(start);
 		startGame = true;
 	}
-	private void addLivesLabel(){
+	private void addLivesLabel(){/*We add the count of lives left, or turns left*/
 		lives = new GLabel("Lives left: " + livesLeft);
 		lives.setFont(new Font("Arial", Font.BOLD, 15));
 		lives.setColor(Color.red);
 		add(lives, 0, lives.getHeight());
-		
 	}
-	private void addScoreLabel(){
+	private void addScoreLabel(){/*Every time user breaks a brick, the score raises*/
 		score = new GLabel("Score: " + SCORE);
 		score.setFont(new Font("Arial", Font.BOLD, 15));
 		score.setColor(Color.green);
 		add(score, getWidth() - score.getWidth(), score.getHeight());
-		
 	}
-	
-		
-	private void makeBrickRows(){
+	private void makeBrickRows(){/*Build wall of the bricks*/
 		for(int i = 0; i < NBRICKS_PER_ROW; i++){
 			for(int j = 0; j < NBRICK_ROWS; j++){
 				double x = BRICK_SEP + i * (BRICK_WIDTH + BRICK_SEP);
@@ -148,31 +147,32 @@ public class BreakoutExtensions extends GraphicsProgram {
 			}
 		}	
 	}
-	private void makeBall(){
+	private void makeBall(){/*In this void we create the ball*/
 		double x = WIDTH / 2 - BALL_RADIUS;
 		double y = HEIGHT / 2 - BALL_RADIUS;
 		ball = new GOval(2 * BALL_RADIUS, 2 * BALL_RADIUS);
 		ball.setFilled(true);
 		add(ball, x, y);
 	}
-	private void makePaddle(){
+	private void makePaddle(){/*In this void we create the paddle*/
 		double x = (WIDTH - PADDLE_WIDTH) / 2;
 		double y = (HEIGHT - PADDLE_HEIGHT - PADDLE_Y_OFFSET);
 		paddle = new GRect(PADDLE_WIDTH, PADDLE_HEIGHT);
 		paddle.setFilled(true);
 		add(paddle, x, y);
 	}
-	private void makeBallMove(){
+	private void makeBallMove(){/*Ball starts moving*/
 		vx = rgen.nextDouble(1.0, 3.0);
 		if (rgen.nextBoolean(0.5)) vx = -vx;
 		vy = 3;
 		while(livesLeft>0){
 			checkCollisions();
+			addSound();
 			ball.move(vx , vy);
 			pause(10);  
 		}
-		}
-	public void mouseMoved(MouseEvent e){
+	}
+	public void mouseMoved(MouseEvent e){/*We move paddle with the mouse, paddles x component will be depended on the mouse's movement*/
 		newvx = e.getX();
 		if(e.getX() + PADDLE_WIDTH > WIDTH){
 			newvx = WIDTH - PADDLE_WIDTH;
@@ -182,7 +182,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 		}
 		paddle.setLocation(newvx, HEIGHT - 40);	
 	}
-	private GObject getCollidingObject(){
+	private GObject getCollidingObject(){/*This will return the object the ball collides with*/
 		if(getElementAt(ball.getX(), ball.getY()) != null){
 			return getElementAt(ball.getX(), ball.getY());
 		}else if(getElementAt(ball.getX() + 2 * BALL_RADIUS, ball.getY()) != null){
@@ -199,11 +199,9 @@ public class BreakoutExtensions extends GraphicsProgram {
 		/*If ball collided with paddle its vy should change to -vy, if ball collided with bricks it should remove the brick and change its vy to -vy*/
 		GObject collider = getCollidingObject();
 		if(collider == paddle){
-			bounceClip.play();
 			if(vy > 0 & ball.getY() + 2*BALL_RADIUS> HEIGHT - PADDLE_HEIGHT - PADDLE_Y_OFFSET) vy =-vy;
 		}else if(collider != null){
 			if(SCORE % 7 == 0) vy = vy * 2;
-			bounceClip.play();
 			remove(collider);
 			vy = -vy;
 			NBRICKS --;
@@ -234,6 +232,10 @@ public class BreakoutExtensions extends GraphicsProgram {
 				pause(100);
 			}
 		}
+	}
+	private void addSound(){
+		GObject collider = getCollidingObject();
+		if(collider != null)bounceClip.play();
 	}
 	private void gameOver(){
 		if(NBRICKS == 0 ){
