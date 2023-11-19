@@ -142,7 +142,7 @@ public class Breakout extends GraphicsProgram {
 		if(e.getX() < 0){
 			newvx = 0;
 		}
-		paddle.setLocation(newvx, HEIGHT - PADDLE_HEIGHT - PADDLE_Y_OFFSET);	
+		paddle.setLocation(newvx, HEIGHT - 40);	
 	}
 	private GObject getCollidingObject(){
 		if(getElementAt(ball.getX(), ball.getY()) != null){
@@ -161,7 +161,7 @@ public class Breakout extends GraphicsProgram {
 		/*If ball collided with paddle its vy should change to -vy, if ball collided with bricks it should remove the brick and change its vy to -vy*/
 		GObject collider = getCollidingObject();
 		if(collider == paddle){
-			if(vy > 0 && ball.getY() + ball.getHeight() > paddle.getY()){ vy =-vy;}
+			if(vy > 0 && ball.getY() + 2*BALL_RADIUS> ) vy =-vy;
 		}else if(collider != null){
 			remove(collider);
 			vy = -vy;
