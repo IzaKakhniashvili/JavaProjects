@@ -103,6 +103,7 @@ public class BreakoutExtensions extends GraphicsProgram {
 		addScoreLabel();
 	}
 	private void initialiseGame(){
+		clickToStart();
 		if(startGame = true){
 			makeBallMove();
 			}
