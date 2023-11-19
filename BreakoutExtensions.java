@@ -192,6 +192,13 @@ public class BreakoutExtensions extends GraphicsProgram {
 			remove(collider);
 			vy = -vy;
 			NBRICKS --;
+			SCORE ++;
+			remove(score);
+			score = new GLabel("Score: " + SCORE );
+			score.setFont(new Font("Arial", Font.BOLD, 15));
+			score.setColor(Color.green);
+			add(score, getWidth() - score.getWidth(), score.getHeight());
+			
 		}
 		/*If ball collides with walls it should start moving in opposite direction*/
 		if(ball.getX() + 2 * BALL_RADIUS >= WIDTH ||
