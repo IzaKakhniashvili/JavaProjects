@@ -89,11 +89,9 @@ public class Breakout extends GraphicsProgram {
 		makePaddle();
 	}
 	private void startGame(){
-		while(livesLeft>0){
 			checkCollisions();
 			makeBallMove();
 		}
-	}
 		
 	private void makeBrickRows(){
 		for(int i = 0; i < NBRICKS_PER_ROW; i++){
@@ -129,8 +127,11 @@ public class Breakout extends GraphicsProgram {
 		vx = rgen.nextDouble(1.0, 3.0);
 		if (rgen.nextBoolean(0.5)) vx = -vx;
 		vy = 3;
+		while(livesLeft>0){
+			checkCollisions();
 			ball.move(vx , vy);
 			pause(10);  
+		}
 		}
 	public void mouseMoved(MouseEvent e){
 		newvx = e.getX();
