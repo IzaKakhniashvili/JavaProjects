@@ -16,6 +16,7 @@ public class Hangman extends ConsoleProgram {
 	private String RandomWord;
 	private RandomGenerator rgen = RandomGenerator.getInstance();
     public void run() {
+    	println("Welcome to Hangman!");
     	word = new HangmanLexicon();
     	selectRandomWord();
     	println(RandomWord);
