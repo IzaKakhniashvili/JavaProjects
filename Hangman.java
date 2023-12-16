@@ -36,7 +36,7 @@ public class Hangman extends ConsoleProgram {
 	private void GuessedWord(){
 		guessedWord = " ";
 		for(int i = 0; i < RandomWord.length(); i++){
-			guessedWord += "_" ; 
+			guessedWord += "_ " ; 
 		}
 	}
 
