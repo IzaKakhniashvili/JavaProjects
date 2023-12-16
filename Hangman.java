@@ -21,10 +21,9 @@ public class Hangman extends ConsoleProgram {
     	println(RandomWord);
 		/* You fill this in */
 	}
-	public String selectRandomWord(){
-		int index = rgen.nextInt(0,10); 
+	public void selectRandomWord(){
+		int index = rgen.nextInt(0,10);  //aqq reinji aris shesacvleli da ar damaviwkdes!!
 		RandomWord = word.getWord(index);
-		return RandomWord;
 	}
 
 }
