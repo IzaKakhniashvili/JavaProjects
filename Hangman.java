@@ -12,9 +12,19 @@ import acm.util.*;
 import java.awt.*;
 
 public class Hangman extends ConsoleProgram {
-
+	private HangmanLexicon word;
+	private String RandomWord;
+	private RandomGenerator rgen = RandomGenerator.getInstance();
     public void run() {
+    	word = new HangmanLexicon();
+    	selectRandomWord();
+    	println(RandomWord);
 		/* You fill this in */
+	}
+	public String selectRandomWord(){
+		int index = rgen.nextInt();
+		RandomWord = word.getWord(index);
+		return RandomWord;
 	}
 
 }
