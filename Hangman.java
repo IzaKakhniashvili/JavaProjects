@@ -22,7 +22,7 @@ public class Hangman extends ConsoleProgram {
 		/* You fill this in */
 	}
 	public String selectRandomWord(){
-		int index = rgen.nextInt();
+		int index = rgen.nextInt(0,10); 
 		RandomWord = word.getWord(index);
 		return RandomWord;
 	}
