@@ -53,11 +53,13 @@ public class Hangman extends ConsoleProgram {
     	if (!GUESSEDWORD.contains("-") && CorrectWord()) {
     	    println("You guessed the word: " + GUESSEDWORD);
     	    println("You win.");
+    	    canvas.displayWord(GUESSEDWORD);
     	} else {
     		canvas.RightFoot();
     	    println("You're completely hung.");
     	    println("The word was: " + RandomWord);
     	    println("You lose");
+    	    canvas.displayWord(GUESSEDWORD);
     	}
     	
     	
