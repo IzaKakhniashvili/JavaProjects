@@ -20,13 +20,35 @@ public class Hangman extends ConsoleProgram {
 	private int CORRECTGUESSES;
 	private RandomGenerator rgen = RandomGenerator.getInstance();
 	public void run() {
-		
+		println("Welcome to Hangman!");
     	word = new HangmanLexicon();
     	selectRandomWord();
     	GuessedWord();
     	println(RandomWord);
     	ATTEMPTS = 8;
-    	HangmanText();
+    	while (ATTEMPTS > 0 && GUESSEDWORD.contains("_")) {
+    		println("The word now looks like this: " + GUESSEDWORD);
+    	    println("You have " + ATTEMPTS + " left.");
+    	    char letter = UserInput();
+    	    guessedLetter(letter);
+    	    if (guessedLetter(letter)){
+    	        println("The guess is correct.");
+    	    } else {
+    	        println("There are no " + letter + "'s in the word.");
+    	        ATTEMPTS--;
+    	    }
+    	}
+
+    	if (!GUESSEDWORD.contains("_") && CorrectWord()) {
+    	    println("You guessed the word: " + GUESSEDWORD);
+    	    println("You win.");
+    	} else {
+    	    println("You're completely hung.");
+    	    println("The word was: " + RandomWord);
+    	    println("You lose");
+    	}
+    	
+    	
 	}
 	public void selectRandomWord(){
 		int index = rgen.nextInt(0,9);  //aqq reinji aris shesacvleli da ar damaviwkdes!!
@@ -65,31 +87,5 @@ public class Hangman extends ConsoleProgram {
 			}
 		}
 		return correctWord;
-	}
-	private void HangmanText(){
-		while (ATTEMPTS > 0){
-    		CORRECTGUESSES = 0;
-			println("The word now looks like this: " + GUESSEDWORD);
-			println("You have " + ATTEMPTS + "guesses left.");
-			char letter = UserInput();
-			if(guessedLetter(letter)){
-				println("The guess is correct.");
-				CORRECTGUESSES += 1;
-				if(CorrectWord() & CORRECTGUESSES == RandomWord.length()){
-					println("You guessed the word: " + GUESSEDWORD);
-					break;
-				}
-			}else if(!guessedLetter(letter)){
-				println("There are no " + letter + "'s in the word");
-				ATTEMPTS --;	
-			}
-    	}	
-    	if(ATTEMPTS == 0){
-    		println("You're completely hung.");
-    		println("The word was " + RandomWord + ".");
-    		println("You lose.");
-    		/* You fill this in */
-    	}
-		
 	}
 }
