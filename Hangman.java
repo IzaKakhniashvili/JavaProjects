@@ -28,6 +28,7 @@ public class Hangman extends ConsoleProgram {
     	println(RandomWord);
     	ATTEMPTS = 8;
     	HangmanText();
+    	PlayAgain();
     	
 	}
 	public void selectRandomWord(){
@@ -108,7 +109,31 @@ public class Hangman extends ConsoleProgram {
     	    println("You lose");
     	    canvas.displayWord(GUESSEDWORD);
     	}
-		
+  
+	}
+		private void PlayAgain(){
+			while(true){
+				if(askUser()){
+					println("Welcome to Hangman!");
+					canvas.reset();
+			    	word = new HangmanLexicon();
+			    	selectRandomWord();
+			    	GuessedWord();
+			    	println(RandomWord);
+			    	ATTEMPTS = 8;
+			    	HangmanText();
+				}else{
+					break;
+				}
+			}
+		}
+		private boolean askUser(){
+			String answer = readLine("Play again?(yes/no): ");
+			boolean wantsToPlay = false;
+			if(answer.equals("yes")){
+				wantsToPlay = true;
+			}
+			return wantsToPlay;
+		}
 	}
 
-}
