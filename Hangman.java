@@ -38,6 +38,7 @@ public class Hangman extends ConsoleProgram {
     	    } else {
     	        println("There are no " + letter + "'s in the word.");
     	        ATTEMPTS--;
+    	        canvas.noteIncorrectGuess(letter);
     	        if(ATTEMPTS == 7)canvas.HangmanHead();
     	        if(ATTEMPTS == 6)canvas.HangmanBody();
     	        if(ATTEMPTS == 5)canvas.LeftArm();
@@ -46,6 +47,7 @@ public class Hangman extends ConsoleProgram {
     	        if(ATTEMPTS == 2)canvas.RightLeg();
     	        if(ATTEMPTS == 1)canvas.LeftFoot();
     	    }
+    	    canvas.remove();;
     	}
 
     	if (!GUESSEDWORD.contains("-") && CorrectWord()) {
