@@ -15,18 +15,44 @@ public class Hangman extends ConsoleProgram {
 	private HangmanLexicon word;
 	private String RandomWord;
 	private int ATTEMPTS;
-	private String guessedWord;
+	private String GUESSEDWORD;
+	private String USERINPUT;
+	private String UPDATEDWORD;
+	private int CORRECTGUESSES;
 	private RandomGenerator rgen = RandomGenerator.getInstance();
-    
+   
 	
 	public void run() {
     	println("Welcome to Hangman!");
     	word = new HangmanLexicon();
     	selectRandomWord();
     	println(RandomWord);
-    	GuessedWord();
-    	println(guessedWord);
-		/* You fill this in */
+    	ATTEMPTS = 8;
+    	
+    	
+    	while (ATTEMPTS > 0){
+    		CORRECTGUESSES = 0;
+			println("The word now looks like this: " + GUESSEDWORD);
+			println("You have " + ATTEMPTS + "guesses left.");
+			char letter = UserInput();
+			if(guessedLetter(letter)){
+				println("The guess is correct.");
+				CORRECTGUESSES += 1;
+				if(CorrectWord() & CORRECTGUESSES == RandomWord.length()){
+					println("You guessed the word: " + GUESSEDWORD);
+					break;
+				}
+			}else if(!guessedLetter(letter)){
+				println("There are no " + letter + "'s in the word");
+				ATTEMPTS --;	
+			}
+    	}	
+    	if(ATTEMPTS == 0){
+    		println("You're completely hung.");
+    		println("The word was " + RandomWord + ".");
+    		println("You lose.");
+    		/* You fill this in */
+    	}
 	}
 	public void selectRandomWord(){
 		int index = rgen.nextInt(0,10);  //aqq reinji aris shesacvleli da ar damaviwkdes!!
@@ -34,10 +60,39 @@ public class Hangman extends ConsoleProgram {
 	}
 	
 	private void GuessedWord(){
-		guessedWord = " ";
+		GUESSEDWORD = " ";
 		for(int i = 0; i < RandomWord.length(); i++){
-			guessedWord += "_ " ; 
+			GUESSEDWORD += "_ " ; 
 		}
 	}
-
+	
+	private char UserInput(){
+		USERINPUT = readLine("Your guess: ").toLowerCase();
+		return USERINPUT.charAt(0);
+		
+	}
+	private boolean guessedLetter(char letter){
+		boolean correctLetter = false;
+		UPDATEDWORD = " ";
+		for(int i = 0; i < RandomWord.length(); i++){
+			if(RandomWord.charAt(i)== letter){
+				correctLetter = true;
+				UPDATEDWORD += letter;
+			}else{
+				UPDATEDWORD += GUESSEDWORD.charAt(i);
+			}
+		}
+		UPDATEDWORD = GUESSEDWORD;
+		return correctLetter;
+	}
+	
+	private boolean CorrectWord(){
+		boolean correctWord = false;
+		for(int i = 0; i < GUESSEDWORD.length(); i++){
+			if(GUESSEDWORD.charAt(i) == RandomWord.charAt(i)){
+				correctWord = true;
+			}
+		}
+		return correctWord;
+	}
 }
