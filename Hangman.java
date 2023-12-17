@@ -28,29 +28,7 @@ public class Hangman extends ConsoleProgram {
     	GuessedWord();
     	println(RandomWord);
     	ATTEMPTS = 8;
-    	while (ATTEMPTS > 0){
-    		CORRECTGUESSES = 0;
-			println("The word now looks like this: " + GUESSEDWORD);
-			println("You have " + ATTEMPTS + "guesses left.");
-			char letter = UserInput();
-			if(guessedLetter(letter)){
-				println("The guess is correct.");
-				CORRECTGUESSES += 1;
-				if(CorrectWord() & CORRECTGUESSES == RandomWord.length()){
-					println("You guessed the word: " + GUESSEDWORD);
-					break;
-				}
-			}else if(!guessedLetter(letter)){
-				println("There are no " + letter + "'s in the word");
-				ATTEMPTS --;	
-			}
-    	}	
-    	if(ATTEMPTS == 0){
-    		println("You're completely hung.");
-    		println("The word was " + RandomWord + ".");
-    		println("You lose.");
-    		/* You fill this in */
-    	}
+    	HangmanText();
 	}
 	public void selectRandomWord(){
 		int index = rgen.nextInt(0,9);  //aqq reinji aris shesacvleli da ar damaviwkdes!!
@@ -89,5 +67,31 @@ public class Hangman extends ConsoleProgram {
 			}
 		}
 		return correctWord;
+	}
+	private void HangmanText(){
+		while (ATTEMPTS > 0){
+    		CORRECTGUESSES = 0;
+			println("The word now looks like this: " + GUESSEDWORD);
+			println("You have " + ATTEMPTS + "guesses left.");
+			char letter = UserInput();
+			if(guessedLetter(letter)){
+				println("The guess is correct.");
+				CORRECTGUESSES += 1;
+				if(CorrectWord() & CORRECTGUESSES == RandomWord.length()){
+					println("You guessed the word: " + GUESSEDWORD);
+					break;
+				}
+			}else if(!guessedLetter(letter)){
+				println("There are no " + letter + "'s in the word");
+				ATTEMPTS --;	
+			}
+    	}	
+    	if(ATTEMPTS == 0){
+    		println("You're completely hung.");
+    		println("The word was " + RandomWord + ".");
+    		println("You lose.");
+    		/* You fill this in */
+    	}
+		
 	}
 }
