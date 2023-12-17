@@ -28,13 +28,13 @@ public class Hangman extends ConsoleProgram {
     	println(RandomWord);
     	ATTEMPTS = 8;
     	while (ATTEMPTS > 0 && GUESSEDWORD.contains("-")) {
+    		canvas.displayWord(GUESSEDWORD);
     		println("The word now looks like this: " + GUESSEDWORD);
     	    println("You have " + ATTEMPTS + " left.");
     	    char letter = UserInput();
     	    guessedLetter(letter);
     	    if (guessedLetter(letter)){
     	        println("The guess is correct.");
-    	        canvas.displayWord(GUESSEDWORD);
     	    } else {
     	        println("There are no " + letter + "'s in the word.");
     	        ATTEMPTS--;
