@@ -26,7 +26,7 @@ public class Hangman extends ConsoleProgram {
     	GuessedWord();
     	println(RandomWord);
     	ATTEMPTS = 8;
-    	while (ATTEMPTS > 0 && GUESSEDWORD.contains("_")) {
+    	while (ATTEMPTS > 0 && GUESSEDWORD.contains("-")) {
     		println("The word now looks like this: " + GUESSEDWORD);
     	    println("You have " + ATTEMPTS + " left.");
     	    char letter = UserInput();
