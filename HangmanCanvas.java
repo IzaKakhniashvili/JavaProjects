@@ -34,9 +34,10 @@ public class HangmanCanvas extends GCanvas {
  * on the scaffold and adds the letter to the list of incorrect
  * guesses that appears at the bottom of the window.
  */
-	public void noteIncorrectGuess(char letter) {
+	public void noteIncorrectGuess(char letter){
+		VY++;
 		int x = XOFFSET;
-		int y = SCAFFOLD_HEIGHT + YOFFSET + 60;
+		int y = SCAFFOLD_HEIGHT + YOFFSET + 60 + VY*5;
 		GLabel incorrect = new GLabel(""+letter);
 		incorrect.setLocation(x, y);
 		incorrect.setFont("Font.ITALIC-20");
@@ -108,6 +109,7 @@ public class HangmanCanvas extends GCanvas {
 
 
 /* Constants for the simple version of the picture (in pixels) */
+	private int VY = 0;
 	private static final int XOFFSET = 30;
 	private static final int YOFFSET = 20;
 	private static final int SCAFFOLD_HEIGHT = 360;
