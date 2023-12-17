@@ -28,8 +28,6 @@ public class Hangman extends ConsoleProgram {
     	GuessedWord();
     	println(RandomWord);
     	ATTEMPTS = 8;
-    	
-    	
     	while (ATTEMPTS > 0){
     		CORRECTGUESSES = 0;
 			println("The word now looks like this: " + GUESSEDWORD);
