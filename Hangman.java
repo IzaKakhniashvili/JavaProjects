@@ -17,7 +17,6 @@ public class Hangman extends ConsoleProgram {
 	private int ATTEMPTS;
 	private String GUESSEDWORD;
 	private String USERINPUT;
-	private String UPDATEDWORD;
 	private int CORRECTGUESSES;
 	private RandomGenerator rgen = RandomGenerator.getInstance();
    
@@ -73,16 +72,12 @@ public class Hangman extends ConsoleProgram {
 	}
 	private boolean guessedLetter(char letter){
 		boolean correctLetter = false;
-		UPDATEDWORD = " ";
 		for(int i = 0; i < RandomWord.length(); i++){
 			if(RandomWord.charAt(i)== letter){
 				correctLetter = true;
-				UPDATEDWORD += letter;
-			}else{
-				UPDATEDWORD += GUESSEDWORD.charAt(i);
+				GUESSEDWORD = GUESSEDWORD.substring(0, i) + letter + GUESSEDWORD.substring(i + 1);
 			}
 		}
-		UPDATEDWORD = GUESSEDWORD;
 		return correctLetter;
 	}
 	
