@@ -22,7 +22,6 @@ public class Hangman extends ConsoleProgram {
    
 	
 	public void run() {
-		println("Welcome to Hangman!");
     	word = new HangmanLexicon();
     	selectRandomWord();
     	GuessedWord();
