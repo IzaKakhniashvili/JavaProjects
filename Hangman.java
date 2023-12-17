@@ -55,7 +55,7 @@ public class Hangman extends ConsoleProgram {
     	}
 	}
 	public void selectRandomWord(){
-		int index = rgen.nextInt(0,10);  //aqq reinji aris shesacvleli da ar damaviwkdes!!
+		int index = rgen.nextInt(0,9);  //aqq reinji aris shesacvleli da ar damaviwkdes!!
 		RandomWord = word.getWord(index);
 		RandomWord = RandomWord.toLowerCase();
 	}
