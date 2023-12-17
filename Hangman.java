@@ -27,41 +27,7 @@ public class Hangman extends ConsoleProgram {
     	GuessedWord();
     	println(RandomWord);
     	ATTEMPTS = 8;
-    	while (ATTEMPTS > 0 && GUESSEDWORD.contains("-")) {
-    		canvas.displayWord(GUESSEDWORD);
-    		println("The word now looks like this: " + GUESSEDWORD);
-    	    println("You have " + ATTEMPTS + " left.");
-    	    char letter = UserInput();
-    	    guessedLetter(letter);
-    	    if (guessedLetter(letter)){
-    	        println("The guess is correct.");
-    	    } else {
-    	        println("There are no " + letter + "'s in the word.");
-    	        ATTEMPTS--;
-    	        canvas.noteIncorrectGuess(letter);
-    	        if(ATTEMPTS == 7)canvas.HangmanHead();
-    	        if(ATTEMPTS == 6)canvas.HangmanBody();
-    	        if(ATTEMPTS == 5)canvas.LeftArm();
-    	        if(ATTEMPTS == 4)canvas.RightArm();
-    	        if(ATTEMPTS == 3)canvas.LeftLeg();
-    	        if(ATTEMPTS == 2)canvas.RightLeg();
-    	        if(ATTEMPTS == 1)canvas.LeftFoot();
-    	    }
-    	   
-    	}
-
-    	if (!GUESSEDWORD.contains("-") && CorrectWord()) {
-    	    println("You guessed the word: " + GUESSEDWORD);
-    	    println("You win.");
-    	    canvas.displayWord(GUESSEDWORD);
-    	} else {
-    		canvas.RightFoot();
-    	    println("You're completely hung.");
-    	    println("The word was: " + RandomWord);
-    	    println("You lose");
-    	    canvas.displayWord(GUESSEDWORD);
-    	}
-    	
+    	HangmanText();
     	
 	}
 	public void selectRandomWord(){
@@ -107,6 +73,42 @@ public class Hangman extends ConsoleProgram {
 		canvas = new HangmanCanvas(); 
 		add(canvas); 
 	} 
-	
+	public void HangmanText(){
+		while (ATTEMPTS > 0 && GUESSEDWORD.contains("-")) {
+    		canvas.displayWord(GUESSEDWORD);
+    		println("The word now looks like this: " + GUESSEDWORD);
+    	    println("You have " + ATTEMPTS + " left.");
+    	    char letter = UserInput();
+    	    guessedLetter(letter);
+    	    if (guessedLetter(letter)){
+    	        println("The guess is correct.");
+    	    } else {
+    	        println("There are no " + letter + "'s in the word.");
+    	        ATTEMPTS--;
+    	        canvas.noteIncorrectGuess(letter);
+    	        if(ATTEMPTS == 7)canvas.HangmanHead();
+    	        if(ATTEMPTS == 6)canvas.HangmanBody();
+    	        if(ATTEMPTS == 5)canvas.LeftArm();
+    	        if(ATTEMPTS == 4)canvas.RightArm();
+    	        if(ATTEMPTS == 3)canvas.LeftLeg();
+    	        if(ATTEMPTS == 2)canvas.RightLeg();
+    	        if(ATTEMPTS == 1)canvas.LeftFoot();
+    	    }
+    	   
+    	}
+
+    	if (!GUESSEDWORD.contains("-") && CorrectWord()) {
+    	    println("You guessed the word: " + GUESSEDWORD);
+    	    println("You win.");
+    	    canvas.displayWord(GUESSEDWORD);
+    	} else {
+    		canvas.RightFoot();
+    	    println("You're completely hung.");
+    	    println("The word was: " + RandomWord);
+    	    println("You lose");
+    	    canvas.displayWord(GUESSEDWORD);
+    	}
+		
+	}
 
 }
