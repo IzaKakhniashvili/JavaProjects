@@ -20,6 +20,9 @@ public class HangmanCanvas extends GCanvas {
  * been guessed so far; unguessed letters are indicated by hyphens.
  */
 	public void displayWord(String word) {
+		if(guessedWord != null){
+			remove(guessedWord);
+		}
 		int x = XOFFSET;
 		int y = SCAFFOLD_HEIGHT + YOFFSET + 30;
 		GLabel guessedWord = new GLabel(word);
@@ -109,6 +112,7 @@ public class HangmanCanvas extends GCanvas {
 
 
 /* Constants for the simple version of the picture (in pixels) */
+	private GLabel guessedWord;
 	private int VX = 0;
 	private static final int XOFFSET = 30;
 	private static final int YOFFSET = 20;
