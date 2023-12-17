@@ -42,7 +42,7 @@ public class HangmanCanvas extends GCanvas {
 	}
 	public void HangmanHead(){
 		GOval HangmanHead = new GOval(HEAD_RADIUS*2, HEAD_RADIUS*2);
-		HangmanHead.setLocation(XOFFSET + BEAM_LENGTH - HEAD_RADIUS, XOFFSET + ROPE_LENGTH);
+		HangmanHead.setLocation(XOFFSET + BEAM_LENGTH - HEAD_RADIUS, YOFFSET + ROPE_LENGTH);
 		add(HangmanHead);	
 	}
 	public void HangmanBody(){
