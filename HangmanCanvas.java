@@ -98,7 +98,7 @@ public class HangmanCanvas extends GCanvas {
 
 /* Constants for the simple version of the picture (in pixels) */
 	private static final int XOFFSET = 30;
-	private static final int YOFFSET = 30;
+	private static final int YOFFSET = 20;
 	private static final int SCAFFOLD_HEIGHT = 360;
 	private static final int BEAM_LENGTH = 144;
 	private static final int ROPE_LENGTH = 18;
