@@ -21,6 +21,7 @@ public class Hangman extends ConsoleProgram {
 	private RandomGenerator rgen = RandomGenerator.getInstance();
 	public void run() {
 		println("Welcome to Hangman!");
+		canvas.reset();
     	word = new HangmanLexicon();
     	selectRandomWord();
     	GuessedWord();
@@ -36,6 +37,7 @@ public class Hangman extends ConsoleProgram {
     	    } else {
     	        println("There are no " + letter + "'s in the word.");
     	        ATTEMPTS--;
+    	        
     	    }
     	}
 
@@ -91,6 +93,7 @@ public class Hangman extends ConsoleProgram {
 	public void init() { 
 		canvas = new HangmanCanvas(); 
 		add(canvas); 
-		} 
+	} 
+	
 
 }
