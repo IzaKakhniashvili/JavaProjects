@@ -39,7 +39,7 @@ public class Hangman extends ConsoleProgram {
     	    }
     	}
 
-    	if (!GUESSEDWORD.contains("_") && CorrectWord()) {
+    	if (!GUESSEDWORD.contains("-") && CorrectWord()) {
     	    println("You guessed the word: " + GUESSEDWORD);
     	    println("You win.");
     	} else {
@@ -59,7 +59,7 @@ public class Hangman extends ConsoleProgram {
 	private void GuessedWord(){
 		GUESSEDWORD = " ";
 		for(int i = 0; i < RandomWord.length(); i++){
-			GUESSEDWORD += "_ " ; 
+			GUESSEDWORD += "-" ; 
 		}
 	}
 	
