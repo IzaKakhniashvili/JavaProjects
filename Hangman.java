@@ -17,7 +17,7 @@ public class Hangman extends ConsoleProgram {
 	private int ATTEMPTS;
 	private String GUESSEDWORD;
 	private String USERINPUT;
-	private int CORRECTGUESSES;
+	private HangmanCanvas canvas;
 	private RandomGenerator rgen = RandomGenerator.getInstance();
 	public void run() {
 		println("Welcome to Hangman!");
@@ -88,4 +88,9 @@ public class Hangman extends ConsoleProgram {
 		}
 		return correctWord;
 	}
+	public void init() { 
+		canvas = new HangmanCanvas(); 
+		add(canvas); 
+		} 
+
 }
