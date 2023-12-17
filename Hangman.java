@@ -47,7 +47,7 @@ public class Hangman extends ConsoleProgram {
     	        if(ATTEMPTS == 2)canvas.RightLeg();
     	        if(ATTEMPTS == 1)canvas.LeftFoot();
     	    }
-    	    canvas.remove();;
+    	   
     	}
 
     	if (!GUESSEDWORD.contains("-") && CorrectWord()) {
