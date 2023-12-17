@@ -34,6 +34,7 @@ public class Hangman extends ConsoleProgram {
     	    guessedLetter(letter);
     	    if (guessedLetter(letter)){
     	        println("The guess is correct.");
+    	        canvas.displayWord(GUESSEDWORD);
     	    } else {
     	        println("There are no " + letter + "'s in the word.");
     	        ATTEMPTS--;
