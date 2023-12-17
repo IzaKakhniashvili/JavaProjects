@@ -37,7 +37,13 @@ public class Hangman extends ConsoleProgram {
     	    } else {
     	        println("There are no " + letter + "'s in the word.");
     	        ATTEMPTS--;
-    	        
+    	        if(ATTEMPTS == 7)canvas.HangmanHead();
+    	        if(ATTEMPTS == 6)canvas.HangmanBody();
+    	        if(ATTEMPTS == 5)canvas.LeftArm();
+    	        if(ATTEMPTS == 4)canvas.RightArm();
+    	        if(ATTEMPTS == 3)canvas.LeftLeg();
+    	        if(ATTEMPTS == 2)canvas.RightLeg();
+    	        if(ATTEMPTS == 1)canvas.LeftFoot();
     	    }
     	}
 
@@ -45,6 +51,7 @@ public class Hangman extends ConsoleProgram {
     	    println("You guessed the word: " + GUESSEDWORD);
     	    println("You win.");
     	} else {
+    		canvas.RightFoot();
     	    println("You're completely hung.");
     	    println("The word was: " + RandomWord);
     	    println("You lose");
