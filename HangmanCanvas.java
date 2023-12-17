@@ -35,13 +35,13 @@ public class HangmanCanvas extends GCanvas {
  * guesses that appears at the bottom of the window.
  */
 	public void noteIncorrectGuess(char letter){
-		int x = XOFFSET + VX*17;
+		int x = XOFFSET + VX;
 		int y = SCAFFOLD_HEIGHT + YOFFSET + 60;
 		GLabel incorrect = new GLabel(""+letter);
 		incorrect.setLocation(x, y);
 		incorrect.setFont("Font.ITALIC-20");
 		add(incorrect);
-		VX++;
+		VX+=17;
 	}
 	public void Gallows(){
 		GLine scaffold = new GLine(XOFFSET, YOFFSET, XOFFSET, YOFFSET + SCAFFOLD_HEIGHT);
