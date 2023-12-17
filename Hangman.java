@@ -19,9 +19,8 @@ public class Hangman extends ConsoleProgram {
 	private String USERINPUT;
 	private int CORRECTGUESSES;
 	private RandomGenerator rgen = RandomGenerator.getInstance();
-   
-	
 	public void run() {
+		
     	word = new HangmanLexicon();
     	selectRandomWord();
     	GuessedWord();
@@ -93,4 +92,7 @@ public class Hangman extends ConsoleProgram {
     	}
 		
 	}
+}
+
+	
 }
