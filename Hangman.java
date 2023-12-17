@@ -28,26 +28,26 @@ public class Hangman extends ConsoleProgram {
     	GuessedWord();
     	println(RandomWord);
     	ATTEMPTS = 8;
-    	println("The word now looks like this: " + GUESSEDWORD);
-		println("You have " + ATTEMPTS + "guesses left.");
     	
     	
-    	while (ATTEMPTS > 0 & GUESSEDWORD.contains(" _")){
+    	while (ATTEMPTS > 0){
+    		CORRECTGUESSES = 0;
+			println("The word now looks like this: " + GUESSEDWORD);
+			println("You have " + ATTEMPTS + "guesses left.");
 			char letter = UserInput();
-			boolean correctGuess = guessedLetter(letter);
-			if(correctGuess){
+			if(guessedLetter(letter)){
 				println("The guess is correct.");
-				println("The word now looks like this: " + GUESSEDWORD);
-			}else{
+				CORRECTGUESSES += 1;
+				if(CorrectWord() & CORRECTGUESSES == RandomWord.length()){
+					println("You guessed the word: " + GUESSEDWORD);
+					break;
+				}
+			}else if(!guessedLetter(letter)){
 				println("There are no " + letter + "'s in the word");
-				println("The word now looks like this: " + GUESSEDWORD);
 				ATTEMPTS --;	
 			}
-    	}
-    	 
-    	if (!GUESSEDWORD.contains("_") & CorrectWord() ) {
-    	    println("Congratulations! You guessed the word.");
-    	}else{
+    	}	
+    	if(ATTEMPTS == 0){
     		println("You're completely hung.");
     		println("The word was " + RandomWord + ".");
     		println("You lose.");
