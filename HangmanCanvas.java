@@ -20,9 +20,11 @@ public class HangmanCanvas extends GCanvas {
  * been guessed so far; unguessed letters are indicated by hyphens.
  */
 	public void displayWord(String word) {
-		if(guessedWord != null){
-			remove(guessedWord);
-		}
+		GObject guessedWordObject = getElementAt(XOFFSET, SCAFFOLD_HEIGHT + YOFFSET + 30);
+	    if (guessedWordObject != null && guessedWordObject instanceof GLabel) {
+	        GLabel guessedWordLabel = (GLabel) guessedWordObject;
+	        guessedWordLabel.setLabel(word);
+	    }
 		int x = XOFFSET;
 		int y = SCAFFOLD_HEIGHT + YOFFSET + 30;
 		GLabel guessedWord = new GLabel(word);
@@ -30,6 +32,7 @@ public class HangmanCanvas extends GCanvas {
 		guessedWord.setFont("Font.ITALIC-20");
 		add(guessedWord);
 	}
+	
 
 /**
  * Updates the display to correspond to an incorrect guess by the
