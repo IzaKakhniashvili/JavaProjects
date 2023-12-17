@@ -24,7 +24,7 @@ public class HangmanCanvas extends GCanvas {
 		int y = SCAFFOLD_HEIGHT + YOFFSET + 15;
 		GLabel guessedWord = new GLabel(word);
 		guessedWord.setLocation(x, y);
-		guessedWord.setFont("Font.ITALIC-12");
+		guessedWord.setFont("Font.ITALIC-20");
 		add(guessedWord);
 	}
 
