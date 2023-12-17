@@ -42,7 +42,7 @@ public class Hangman extends ConsoleProgram {
 					println("You guessed the word: " + GUESSEDWORD);
 					break;
 				}
-			}else if(!guessedLetter(letter)){
+			}else{
 				println("There are no " + letter + "'s in the word");
 				ATTEMPTS --;	
 			}
