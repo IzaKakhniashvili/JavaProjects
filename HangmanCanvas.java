@@ -20,7 +20,11 @@ public class HangmanCanvas extends GCanvas {
  * been guessed so far; unguessed letters are indicated by hyphens.
  */
 	public void displayWord(String word) {
-		/* You fill this in */
+		int x = XOFFSET;
+		int y = SCAFFOLD_HEIGHT + YOFFSET + 5;
+		GLabel guessedWord = new GLabel(word);
+		guessedWord.setLocation(x, y);
+		add(guessedWord);
 	}
 
 /**
