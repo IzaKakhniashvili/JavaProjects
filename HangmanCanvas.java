@@ -41,7 +41,7 @@ public class HangmanCanvas extends GCanvas {
 		incorrect.setLocation(x, y);
 		incorrect.setFont("Font.ITALIC-20");
 		add(incorrect);
-		VX+=17;
+		VX+=12;
 	}
 	public void Gallows(){
 		GLine scaffold = new GLine(XOFFSET, YOFFSET, XOFFSET, YOFFSET + SCAFFOLD_HEIGHT);
