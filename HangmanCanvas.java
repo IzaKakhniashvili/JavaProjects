@@ -31,8 +31,73 @@ public class HangmanCanvas extends GCanvas {
 	public void noteIncorrectGuess(char letter) {
 		/* You fill this in */
 	}
+	public void Gallows(){
+		GLine scaffold = new GLine(XOFFSET, YOFFSET, XOFFSET, YOFFSET + SCAFFOLD_HEIGHT);
+		add(scaffold);
+		GLine beam = new GLine(XOFFSET, YOFFSET, XOFFSET + BEAM_LENGTH, YOFFSET);
+		add(beam);
+		GLine rope = new GLine(XOFFSET + BEAM_LENGTH, YOFFSET, XOFFSET + BEAM_LENGTH, YOFFSET + ROPE_LENGTH);
+		add(rope);
+	}
+	public void HangmanHead(){
+		GOval HangmanHead = new GOval(HEAD_RADIUS*2, HEAD_RADIUS*2);
+		HangmanHead.setLocation(XOFFSET + BEAM_LENGTH - HEAD_RADIUS, XOFFSET + ROPE_LENGTH);
+		add(HangmanHead);	
+	}
+	public void HangmanBody(){
+		int xbody = XOFFSET + BEAM_LENGTH;
+		int ybody = YOFFSET + HEAD_RADIUS * 2 + ROPE_LENGTH;
+		GLine body = new GLine(xbody, ybody, xbody, ybody + BODY_LENGTH);
+		add(body);
+	}
+	public void LeftArm(){
+		int xArm = XOFFSET + BEAM_LENGTH;
+		int yArm = YOFFSET + HEAD_RADIUS * 2 + ROPE_LENGTH + ARM_OFFSET_FROM_HEAD ;
+		GLine leftArm = new GLine(xArm, yArm, xArm - UPPER_ARM_LENGTH, yArm);
+		add(leftArm);
+		GLine lowerArm = new GLine(xArm - UPPER_ARM_LENGTH, yArm, xArm - UPPER_ARM_LENGTH, yArm + LOWER_ARM_LENGTH);
+		add(lowerArm);
+	}
+	public void RightArm(){
+		int xArm = XOFFSET + BEAM_LENGTH;
+		int yArm = YOFFSET + HEAD_RADIUS * 2 + ROPE_LENGTH + ARM_OFFSET_FROM_HEAD;
+		GLine rightArm = new GLine(xArm, yArm, xArm + UPPER_ARM_LENGTH, yArm);
+		add(rightArm);
+		GLine lowerArm = new GLine(xArm + UPPER_ARM_LENGTH, yArm, xArm + UPPER_ARM_LENGTH, yArm + LOWER_ARM_LENGTH);
+		add(lowerArm);
+	}
+	public void LeftLeg(){
+		int xLeg = XOFFSET + BEAM_LENGTH;
+		int yLeg = YOFFSET + HEAD_RADIUS * 2 + ROPE_LENGTH + BODY_LENGTH;
+		GLine hip = new GLine(xLeg, yLeg, xLeg - HIP_WIDTH, yLeg);
+		add(hip);
+		GLine leg = new GLine(xLeg - HIP_WIDTH, yLeg, xLeg - HIP_WIDTH, yLeg + LEG_LENGTH);
+		add(leg);
+	}
+	public void RightLeg(){
+		int xLeg = XOFFSET + BEAM_LENGTH;
+		int yLeg = YOFFSET + HEAD_RADIUS * 2 + ROPE_LENGTH + BODY_LENGTH;
+		GLine hip = new GLine(xLeg, yLeg, xLeg + HIP_WIDTH, yLeg);
+		add(hip);
+		GLine leg = new GLine(xLeg + HIP_WIDTH, yLeg, xLeg + HIP_WIDTH, yLeg + LEG_LENGTH);
+		add(leg);
+	}
+	public void LeftFoot(){
+		int xFoot = XOFFSET + BEAM_LENGTH - HIP_WIDTH;
+		int yFoot = YOFFSET + HEAD_RADIUS * 2 + ROPE_LENGTH + BODY_LENGTH + LEG_LENGTH;
+		GLine foot =new GLine(xFoot, yFoot, xFoot - FOOT_LENGTH, yFoot);
+		add(foot);
+	}
+	public void RightFoot(){
+		int xFoot = XOFFSET + BEAM_LENGTH + HIP_WIDTH;
+		int yFoot = YOFFSET + HEAD_RADIUS * 2 + ROPE_LENGTH + BODY_LENGTH + LEG_LENGTH;
+		GLine foot =new GLine(xFoot, yFoot, xFoot + FOOT_LENGTH, yFoot);
+		add(foot);
+	}
 
 /* Constants for the simple version of the picture (in pixels) */
+	private static final int XOFFSET = 30;
+	private static final int YOFFSET = 30;
 	private static final int SCAFFOLD_HEIGHT = 360;
 	private static final int BEAM_LENGTH = 144;
 	private static final int ROPE_LENGTH = 18;
