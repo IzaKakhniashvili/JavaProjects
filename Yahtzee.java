@@ -4,6 +4,8 @@
  * This program will eventually play the Yahtzee game.
  */
 
+import java.util.Arrays;
+
 import acm.io.*;
 import acm.program.*;
 import acm.util.*;
@@ -51,12 +53,75 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		}
 		/* You fill this in */
 	}
+	private int checkScore(int category, int[] dice) {
+		score = 0;
+		Arrays.sort(dice);
+		switch(category) {
+			case ONES:
+			case TWOS:
+			case THREES:
+			case FOURS:
+			case FIVES:
+			case SIXES:
+				for(int i = 0; i < dice.length; i++) {
+					if(dice[i] == category) {
+						score += dice[i];
+					}
+				}
+				break;
+			case THREE_OF_A_KIND:
+				if(isOfAKind(3)) {
+					for(int i = 0; i < dice.length; i++) {
+						score += dice[i];
+					}
+				}
+				break;
+			case FOUR_OF_A_KIND:
+				if(isOfAKind(4)) {
+					for(int i =0; i < dice.length; i++) {
+						score += dice[i];
+					}
+				}
+				break;
+			case YAHTZEE:
+				if(isOfAKind(5)) {
+					for(int i = 0; i < dice.length; i++) {
+						score += dice[i];
+					}
+				}
+				break;
+			case CHANCE:
+				for(int i = 0; i < dice.length; i++) {
+					score += dice[i];
+				}
+				break;
+				
+		}
+		return score;
+	}
+	private boolean isOfAKind(int n) {
+		for(int i = 1; i<=6; i++) {
+			count = 0;
+			for(int j = 0; j<dice.length; j++) {
+				if(dice[j]==i) {
+					count++;
+				}
+			}
+			if(count >= n) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 		
 /* Private instance variables */
+	private int score;
 	private int nPlayers;
 	private String[] playerNames;
 	private YahtzeeDisplay display;
 	private RandomGenerator rgen = new RandomGenerator();
 	private int[] dice;
+	private int count;
 
 }
