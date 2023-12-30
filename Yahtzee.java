@@ -22,11 +22,19 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 			playerNames[i - 1] = dialog.readLine("Enter name for player " + i);
 		}
 		display = new YahtzeeDisplay(getGCanvas(), playerNames);
+		
+		dice = new int[N_DICE];
+		for(int i = 0; i < N_DICE; i++) {
+			dice[i] = rgen.nextInt(1, 6);
+		}
+		
+		
 		playGame();
 	}
 
 	private void playGame() {
 		display.waitForPlayerToClickRoll(1);
+		display.displayDice(dice);
 		/* You fill this in */
 	}
 		
@@ -35,5 +43,6 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private String[] playerNames;
 	private YahtzeeDisplay display;
 	private RandomGenerator rgen = new RandomGenerator();
+	private int[] dice;
 
 }
