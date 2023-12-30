@@ -44,8 +44,6 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 			}
 			display.displayDice(dice);
 		}
-		
-		
 		display.displayDice(dice);
 		int category = display.waitForPlayerToSelectCategory();
 		if(YahtzeeMagicStub.checkCategory(dice, category)) {
