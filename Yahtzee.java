@@ -41,7 +41,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		TotalScore = new int[nPlayers];
 		UpperScore = new int[nPlayers];
 		LowerScore = new int[nPlayers];
-		usedCategories = new boolean [TOTAL];
+		usedCategories = new boolean [nPlayers][N_CATEGORIES];
 		for(int n = 0; n < 13; n++) {
 			for(int pl = 1; pl <= nPlayers; pl++){
 				display.printMessage(playerNames[pl - 1] + "'s turn! Click ''Roll Dice'' button to roll the dice.");
@@ -60,11 +60,11 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				}
 				display.printMessage("Select the category for this roll.");
 				int category = display.waitForPlayerToSelectCategory();
-				if(usedCategories[category]) {
+				if(usedCategories[pl - 1][category]) {
 					display.printMessage("This category has already been chosen. Choose another one.");
 					pl --;
 				}
-				usedCategories[category] = true;
+				usedCategories[pl - 1][category] = true;
 				checkScore(category, dice);
 				if (category >= ONES && category <= SIXES) {
 	                UpperScore[pl - 1] += score;
@@ -231,6 +231,6 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private int UpperScore[];
 	private int LowerScore[];
 	private String Winner;
-	private boolean usedCategories[];
+	private boolean usedCategories[][];
 
 }
