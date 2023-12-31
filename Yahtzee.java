@@ -48,10 +48,10 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		}
 		display.displayDice(dice);
 		int category = display.waitForPlayerToSelectCategory();
-		if(YahtzeeMagicStub.checkCategory(dice, category)) {
-			
-		}
-		/* You fill this in */
+		checkScore(category, dice);
+		display.updateScorecard(category, 1, score);
+		
+		
 	}
 	private int checkScore(int category, int[] dice) {
 		score = 0;
@@ -95,13 +95,68 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 					score += dice[i];
 				}
 				break;
-				
+			case FULL_HOUSE:
+				if(isFullHouse()) {
+					score = 25;
+				}
+				break;
+			case SMALL_STRAIGHT:
+				if(isSmallStraight()){
+					score = 30;
+				}
+				break;
+			case LARGE_STRAIGHT:
+				if(isLargeStraight()) {
+					score = 40;
+				}
+				break;
+			default:
+				break;
 		}
 		return score;
 	}
+	//Check if users choice meets requirements
+	private boolean isSmallStraight(){
+		int count = 0;
+		for(int i = 0; i <= 6; i++) {
+			for(int j = 0; j < dice.length; j++) {
+				if(dice[j] == i){
+					count ++;
+				}
+			}
+		}
+		if(count >= 4) {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isLargeStraight(){
+		int count = 0;
+		for(int i = 0; i <=6; i++) {
+			for(int j = 0; j < dice.length; j++){
+				if(dice[j] == i){
+					count++;
+				}
+			}
+		}
+		if(count == 5){
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isFullHouse() {
+		if((dice[0] == dice[1] && dice[2] == dice[4])||
+		(dice[0] == dice[2] && dice[3] == dice[4])){
+			return true;
+		}
+		return false;
+	}
+	
 	private boolean isOfAKind(int n) {
 		for(int i = 1; i<=6; i++) {
-			count = 0;
+			int count = 0;
 			for(int j = 0; j<dice.length; j++) {
 				if(dice[j]==i) {
 					count++;
@@ -122,6 +177,5 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private YahtzeeDisplay display;
 	private RandomGenerator rgen = new RandomGenerator();
 	private int[] dice;
-	private int count;
 
 }
