@@ -62,6 +62,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				int category = display.waitForPlayerToSelectCategory();
 				if(usedCategories[category]) {
 					display.printMessage("This category has already been chosen. Choose another one.");
+					pl --;
 				}
 				usedCategories[category] = true;
 				checkScore(category, dice);
