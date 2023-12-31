@@ -57,6 +57,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 					}
 					display.displayDice(dice);
 				}
+				display.printMessage("Select the category for this roll.");
 				int category = display.waitForPlayerToSelectCategory();
 				checkScore(category, dice);
 				if (category >= ONES && category <= SIXES) {
@@ -66,6 +67,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	            }
 				display.updateScorecard(category, pl, score);
 				TotalScore[pl - 1] += score;
+				display.printMessage(playerNames[pl - 1] + "'s current score: " + TotalScore[pl - 1]);
 				display.updateScorecard(TOTAL, pl, TotalScore[pl - 1]);
 			}
 		}
