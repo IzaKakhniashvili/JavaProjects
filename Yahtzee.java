@@ -38,9 +38,9 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	
 	
 	private void playGame() {
+		TotalScore = new int[nPlayers];
 		for(int n = 0; n < 13; n++) {
 			for(int pl = 1; pl <= nPlayers; pl++){
-				TotalScore = 0;
 				display.waitForPlayerToClickRoll(pl);
 				rollDice();
 				display.displayDice(dice);
@@ -57,8 +57,8 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				int category = display.waitForPlayerToSelectCategory();
 				checkScore(category, dice);
 				display.updateScorecard(category, pl, score);
-				TotalScore += score;
-				display.updateScorecard(TOTAL, pl, TotalScore);
+				TotalScore[pl - 1] += score;
+				display.updateScorecard(TOTAL, pl, TotalScore[pl - 1]);
 			}
 		}
 		
@@ -188,6 +188,6 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private YahtzeeDisplay display;
 	private RandomGenerator rgen = new RandomGenerator();
 	private int[] dice;
-	private int TotalScore;
+	private int TotalScore[];
 
 }
