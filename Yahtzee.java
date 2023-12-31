@@ -57,7 +57,6 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 					}
 					display.displayDice(dice);
 				}
-				display.displayDice(dice);
 				int category = display.waitForPlayerToSelectCategory();
 				checkScore(category, dice);
 				if (category >= ONES && category <= SIXES) {
