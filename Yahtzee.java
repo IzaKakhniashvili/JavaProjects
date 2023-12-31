@@ -58,7 +58,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				checkScore(category, dice);
 				display.updateScorecard(category, pl, score);
 				TotalScore += score;
-				display.updateScorecard(17, pl, TotalScore);
+				display.updateScorecard(TOTAL, pl, TotalScore);
 			}
 		}
 		
