@@ -41,8 +41,9 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		TotalScore = new int[nPlayers];
 		UpperScore = new int[nPlayers];
 		LowerScore = new int[nPlayers];
-		for(int n = 0; n < 2; n++) {
+		for(int n = 0; n < 13; n++) {
 			for(int pl = 1; pl <= nPlayers; pl++){
+				display.printMessage(playerNames[pl - 1] + "'s turn! Click ''Roll Dice'' button to roll the dice.");
 				display.waitForPlayerToClickRoll(pl);
 				rollDice();
 				display.displayDice(dice);
