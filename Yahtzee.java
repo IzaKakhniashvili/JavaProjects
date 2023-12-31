@@ -28,7 +28,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	}
 	
 	
-	
+	//We generate random values for dices
 	private void rollDice(){
 		dice = new int[N_DICE];
 		for(int i = 0; i < N_DICE; i++) {
@@ -36,47 +36,57 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		}
 	}
 	
-	
+	//
 	private void playGame() {
+		//each array saves information from each player
 		TotalScore = new int[nPlayers];
 		UpperScore = new int[nPlayers];
 		LowerScore = new int[nPlayers];
 		usedCategories = new boolean [nPlayers][N_CATEGORIES];
+		//game should consist  of 13 rounds
 		for(int n = 0; n < 13; n++) {
 			for(int pl = 1; pl <= nPlayers; pl++){
 				display.printMessage(playerNames[pl - 1] + "'s turn! Click ''Roll Dice'' button to roll the dice.");
 				display.waitForPlayerToClickRoll(pl);
 				rollDice();
 				display.displayDice(dice);
+				
+				
 				for(int i = 0; i < 2; i++) {
 					display.printMessage(playerNames[pl - 1] + " select the dice you wish to reroll and click ''Roll Again.''");
 					display.waitForPlayerToSelectDice();
-					for(int j = 0; j < N_DICE; j++) {
+					for(int j = 0; j < N_DICE; j++) { //chosen dices should be given new random values
 						if(display.isDieSelected(j)) {
 							dice[j] = rgen.nextInt(1, 6);
 						}
 					}
 					display.displayDice(dice);
 				}
+				
 				display.printMessage("Select the category for this roll.");
 				int category = display.waitForPlayerToSelectCategory();
-				if(usedCategories[pl - 1][category]) {
+				
+				if(usedCategories[pl - 1][category]) { //if category has been already chosen, player will be notified
 					display.printMessage("This category has already been chosen. Choose another one.");
 					category = display.waitForPlayerToSelectCategory();
 				}
+		
 				usedCategories[pl - 1][category] = true;
 				checkScore(category, dice);
+				
 				if (category >= ONES && category <= SIXES) {
 	                UpperScore[pl - 1] += score;
 	            }else if (category >= THREE_OF_A_KIND && category <= CHANCE) {
 	                LowerScore[pl - 1] += score;
 	            }
+				
 				display.updateScorecard(category, pl, score);
 				TotalScore[pl - 1] += score;
 				display.printMessage(playerNames[pl - 1] + "'s current score: " + TotalScore[pl - 1]);
 				display.updateScorecard(TOTAL, pl, TotalScore[pl - 1]);
 			}
 		}
+		//calculate final scores and get the winner
 		for (int pl = 1; pl <= nPlayers; pl++) {
 	        if (UpperScore[pl - 1] >= 63) {
 	        	 display.updateScorecard(UPPER_BONUS, pl, 35);
@@ -91,6 +101,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		getWinner();
 		
 	}
+	//determine categories and scores each category gives
 	private int checkScore(int category, int[] dice) {
 		score = 0;
 		Arrays.sort(dice);
@@ -153,6 +164,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		}
 		return score;
 	}
+	
 	//Check if users choice meets requirements
 	
 	private boolean isSmallStraight(){
@@ -187,7 +199,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		}
 		return false;
 	}
-	
+	//we check generally dices are  three, four or five of a kind
 	private boolean isOfAKind(int n) {
 		for(int i = 1; i<=6; i++) {
 			int count = 0;
@@ -202,7 +214,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		}
 		return false;
 	}
-	
+	//calculate final scores of each player and get the winner
 	private void getWinner() {
 		Winner = " ";
 		int winnerScore = 0;
@@ -216,10 +228,6 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		display.printMessage("Congratulations " + Winner + " ! Your are the winner with a total score of " + winnerScore);
 	}
 	
-		
-
-	
-		
 /* Private instance variables */
 	private int score;
 	private int nPlayers;
