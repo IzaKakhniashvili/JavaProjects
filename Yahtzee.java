@@ -63,6 +63,10 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	            }else if (category >= THREE_OF_A_KIND && category <= CHANCE) {
 	                LowerScore[pl - 1] += score;
 	            }
+				if (UpperScore[pl - 1] >= 63) {
+					display.updateScorecard(UPPER_BONUS, pl, 35);
+					TotalScore[pl - 1] += 35;
+				}
 				display.updateScorecard(UPPER_SCORE, pl, UpperScore[pl - 1]);
 				display.updateScorecard(LOWER_SCORE, pl, LowerScore[pl - 1]);
 				display.updateScorecard(category, pl, score);
