@@ -129,8 +129,9 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	//Check if users choice meets requirements
 	
 	private boolean isSmallStraight(){
-		for (int i = 0; i < dice.length - 1; i++) {
-	        if (dice[i + 1] - dice[i] != 1) {
+		Arrays.sort(dice);
+		for (int i = 0; i < dice.length; i++) {
+	        if (dice[i] + 1 != dice[i + 1]) {
 	            return false;
 	        }
 		 }
@@ -138,6 +139,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	}
 	
 	private boolean isLargeStraight(){
+		Arrays.sort(dice);
 		if (Arrays.equals(dice, new int[]{1, 2, 3, 4, 5}) ||
                 Arrays.equals(dice, new int[]{2, 3, 4, 5, 6})) {
 			return true;
