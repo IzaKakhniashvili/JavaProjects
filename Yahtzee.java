@@ -129,16 +129,12 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	//Check if users choice meets requirements
 	
 	private boolean isSmallStraight(){
-		int count = 0;
 		for (int i = 0; i < dice.length - 1; i++) {
-		    if (dice[i + 1] - dice[i] == 1) {
-		        count++;
-		        if (count >= 4) {
-		           return true;
-		        }
-		    }
-		}
-		 return false;
+	        if (dice[i + 1] - dice[i] != 1) {
+	            return false;
+	        }
+		 }
+	     return true;
 	}
 	
 	private boolean isLargeStraight(){
