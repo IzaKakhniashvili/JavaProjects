@@ -56,6 +56,10 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				display.displayDice(dice);
 				int category = display.waitForPlayerToSelectCategory();
 				checkScore(category, dice);
+				if (category >= ONES && category <= SIXES) {
+	                TotalScore[pl - 1] += score;
+	            }
+				display.updateScorecard(UPPER_SCORE, pl, TotalScore[pl - 1]);
 				display.updateScorecard(category, pl, score);
 				TotalScore[pl - 1] += score;
 				display.updateScorecard(TOTAL, pl, TotalScore[pl - 1]);
@@ -129,18 +133,18 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	//Check if users choice meets requirements
 	
 	private boolean isSmallStraight(){
-		 int consecutiveCount = 0;
+		 int count = 0;
 		    for (int i = 0; i < dice.length - 1; i++) {
 		        if (dice[i + 1] - dice[i] == 1) {
-		            consecutiveCount++;
-		            if (consecutiveCount == 3) {
+		           count++;
+		            if (count == 3) {
 		                return true;
 		            }
 		        } else if (dice[i + 1] - dice[i] > 1) {
-		            consecutiveCount = 0; // Reset count if gap is larger than 1
+		            count = 0; 
 		        }
 		    }
-		    return false;
+		  return false;
 	}
 	
 	private boolean isLargeStraight(){
@@ -176,6 +180,10 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		return false;
 	}
 	
+	
+		
+
+	
 		
 /* Private instance variables */
 	private int score;
@@ -185,5 +193,6 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private RandomGenerator rgen = new RandomGenerator();
 	private int[] dice;
 	private int TotalScore[];
+	private int UpperScore;
 
 }
