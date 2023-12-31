@@ -112,12 +112,12 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				}
 				break;
 			case SMALL_STRAIGHT:
-				if(isStraight()){
+				if(isSmallStraight()){
 					score = 30;
 				}
 				break;
 			case LARGE_STRAIGHT:
-				if(isStraight()) {
+				if(isLargeStraight()) {
 					score = 40;
 				}
 				break;
@@ -127,14 +127,29 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		return score;
 	}
 	//Check if users choice meets requirements
-	private boolean isStraight(){
-		for(int i = 0; i < dice.length - 1; i++) {
-			if(dice[i + 1] - dice[i] != 1) {
-				return false;
-			}
+	
+	private boolean isSmallStraight(){
+		int count = 0;
+		for (int i = 0; i < dice.length - 1; i++) {
+		    if (dice[i + 1] - dice[i] == 1) {
+		        count++;
+		        if (count >= 4) {
+		           return true;
+		        }
+		    }
 		}
-		return true;
+		 return false;
 	}
+	
+	private boolean isLargeStraight(){
+		if (Arrays.equals(dice, new int[]{1, 2, 3, 4, 5}) ||
+                Arrays.equals(dice, new int[]{2, 3, 4, 5, 6})) {
+			return true;
+		}
+		return false;
+		
+	}
+	
 	private boolean isFullHouse() {
 		if((dice[0] == dice[1] && dice[2] == dice[4])||
 		(dice[0] == dice[2] && dice[3] == dice[4])){
