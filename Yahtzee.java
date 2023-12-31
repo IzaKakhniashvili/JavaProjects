@@ -41,6 +41,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		TotalScore = new int[nPlayers];
 		UpperScore = new int[nPlayers];
 		LowerScore = new int[nPlayers];
+		usedCategories = new boolean [TOTAL];
 		for(int n = 0; n < 13; n++) {
 			for(int pl = 1; pl <= nPlayers; pl++){
 				display.printMessage(playerNames[pl - 1] + "'s turn! Click ''Roll Dice'' button to roll the dice.");
@@ -59,6 +60,10 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				}
 				display.printMessage("Select the category for this roll.");
 				int category = display.waitForPlayerToSelectCategory();
+				if(usedCategories[category]) {
+					display.printMessage("This category has already been chosen. Choose another one.");
+				}
+				usedCategories[category] = true;
 				checkScore(category, dice);
 				if (category >= ONES && category <= SIXES) {
 	                UpperScore[pl - 1] += score;
@@ -82,6 +87,8 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	        display.updateScorecard(UPPER_SCORE, pl, UpperScore[pl - 1]);
 			display.updateScorecard(LOWER_SCORE, pl, LowerScore[pl - 1]);
 		}
+		getWinner();
+		
 	}
 	private int checkScore(int category, int[] dice) {
 		score = 0;
@@ -195,6 +202,18 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		return false;
 	}
 	
+	private void getWinner() {
+		Winner = " ";
+		int winnerScore = 0;
+		for (int pl = 1; pl <= nPlayers; pl++) {
+			int finalScore = TotalScore[pl - 1];
+			if(finalScore > winnerScore) {
+				winnerScore = finalScore;
+				Winner = playerNames[pl - 1];
+			}
+		}
+		display.printMessage("Congratulations " + Winner + " ! Your are the winner with a total score of " + winnerScore);
+	}
 	
 		
 
@@ -210,5 +229,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private int TotalScore[];
 	private int UpperScore[];
 	private int LowerScore[];
+	private String Winner;
+	private boolean usedCategories[];
 
 }
